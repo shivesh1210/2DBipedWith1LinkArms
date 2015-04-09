@@ -49,14 +49,14 @@ m6 = 1.3;%Upper bras 1:
 m7 = 0.85;%avant bras 1
 m8=m6;
 m9=m7;
-mass_phone = 0.139      % Mass of smartphone
+mass_phone = 0      % Mass of smartphone
 m9new = m9 + mass_phone;
 M=(m1 + m2 + m3 + m4 + m5 + 2 * m6 + m7 + m9new +2 * mp + mass_phone)
 
 %Moment of Inertia of articulations at CoG
 I1 = 0.02765;
 I2 = 0.06645;
-I3 =0.6848405
+I3 =0.6848405;
 I4=I2;
 I5=I1;
 Ip1=0.001753;%0.00393697; %including the inertia of the toe
@@ -86,5 +86,3 @@ s9new = (m9*s9 + mass_phone*L9)/(mass_phone+m9);
 m9 = m9new;
 s9 = s9new;
 I9 = I9new;
-
-Walk_Speed = 1.4;

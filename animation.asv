@@ -1,6 +1,6 @@
 function [x, z, aviobj] = animation(poly, xstart, zstart, aviobj)
 
-global hp
+
 %% Animation
 figure(20);
  
@@ -23,7 +23,7 @@ m = size(poly);
 set(h,'LineWidth',1);
 
 for j=1:1:m(2)
-    [xj,zj]=draw10(poly(:,j)', xstart, zstart); 
+    [xj,zj]=draw10(poly(:,j)', xstart); 
 
     set(h(1),'XData',xj(1,:),'YData',zj(1,:));
     set(h(2),'XData',xj(2,:),'YData',zj(2,:));
@@ -44,12 +44,12 @@ for j=1:1:m(2)
     pause(0.05)
     xphone(j) = xj(9,2);
     zphone(j) = zj(9,2);
-    if(nargin == 4)
+    if(nargin == 3)
     F = getframe(20);
     aviobj = addframe(aviobj,F);
     end
 end
 x = xj(4,2);
-z = zj(4,2)-hp;
+z = xj(4,1);
 
 end

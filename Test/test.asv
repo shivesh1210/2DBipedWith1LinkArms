@@ -1,5 +1,5 @@
 close all
-clear all
+% clear all
 clc
 
 global poly polyp T Tint vec_T impactindex xstep1 xstep2 Walk_Speed
@@ -7,9 +7,9 @@ global poly polyp T Tint vec_T impactindex xstep1 xstep2 Walk_Speed
 % Go back to previous directory
 cd ..
 % Load an already optimised set of parameters for simulation
-load('Optimisation Parameters Results\Optim_Parameters11_V10.mat');
+  load('Optimisation Parameters Results\Optim_Parameters11_V13.mat');
 
-Walk_Speed = 1.0;
+Walk_Speed = 1.3;
 
 Hydroid_initialisation_2D
 
@@ -19,11 +19,11 @@ criteria = Hydroid_Trajec(Optim_Parameters);
 % % Record Animation 
 % aviobj = avifile('Swinging.avi');
 % xstart = 0;
-% [xstep1 zstep1 aviobj] = animation(poly(:,1:impactindex), xstart, zstart, aviobj);
+% [xstep1 aviobj] = animation(poly(:,1:impactindex), xstart, aviobj);
 % title('Impact');
 % % pause(5);
 % title('Step 2');
-% [xstep2 zstep2 aviobj] = animation(poly(:,impactindex+1:end), xstep1, zstart, aviobj);
+% [xstep2 aviobj] = animation(poly(:,impactindex+1:end), xstep1, aviobj);
 % aviobj = close(aviobj);
 
 % Animation 
@@ -58,7 +58,7 @@ legend('Tint','q1','q2','q3','q4','q5','q6','q7','q8','q9','qp1 or qp2');
 % Plot the start, intermediate and final position of biped body
 animation(poly(:,1), 0, 0);    % Start
 [xstep1 zstep1] = animation(poly(:,impactindex), 0, 0);    % First Impact (i.e. Intermediate position)
-[x z] = animation(poly(:,end), xstep1, zstep1);        % Second Impact (i.e. Final position) 
+[x] = animation(poly(:,end), xstart, zstart);        % Second Impact (i.e. Final position) 
 
 % Plot handheld device's acceleration characterstics
 % phone_characteristics_numerical   % Plots phone's acceleration using numerical differentiation

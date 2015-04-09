@@ -21,9 +21,9 @@ global xstep1 xstep2
 format long
 Hydroid_initialisation_2D
 
-load('Optimisation Parameters Results\Optim_Parameters11_V10.mat')
+load('Optimisation Parameters Results\Optim_Parameters11_V06.mat')
 
-Walk_Speed = 1.0;
+Walk_Speed = 0.6;
 initial_cond = Optim_Parameters;
 
 %% Boundary Conditions
@@ -63,7 +63,7 @@ weight=abs(goal);
 % options = optimset('Display','iter-detailed','MaxFunEvals',100000,'MaxIter',1800,'TolCon',1e-2 ,'TolX',1e-2,'TolFun',1e-2);  %  ,'MeritFunction','singleobj'
 % [Optim_Parameters,Fval,flag] = fgoalattain('Hydroid_Trajec',initial_cond,goal,weight,A,B,Aeq,Beq,Ulb,Uub,'Hydroid_constraints', options);
 %   options = optimset('Display','iter-detailed','MaxFunEvals',100000,'MaxIter',1800,'TolCon',1e-1 ,'TolX',1e-1,'TolFun',1e-1,'Algorithm','active-set'); 
- options = optimset('Display','iter-detailed','MaxFunEvals',100000,'MaxIter',1800,'TolCon',1e-2 ,'TolX',1e-2,'TolFun',1e-2);  %  ,'MeritFunction','singleobj'
+ options = optimset('Display','iter-detailed','MaxFunEvals',100000,'MaxIter',21,'TolCon',1e-2 ,'TolX',1e-2,'TolFun',1e-2);  %  ,'MeritFunction','singleobj'
 % options = optimset('Display','iter-detailed','MaxFunEvals',100000,'MaxIter',1800,'TolCon',1e-4 ,'TolX',1e-4,'TolFun',1e-4,'PlotFcns',@optimplotx);  %  ,'MeritFunction','singleobj'
 [Optim_Parameters,Fval,EXITFLAG,output,lambda,grad] = fmincon('Hydroid_Trajec',...
     initial_cond,A,B,Aeq,Beq,Ulb,Uub,'Hydroid_constraints',options);
@@ -72,8 +72,9 @@ flag1
 flag2
 
 xstart = 0;
-[xstep1] = animation(poly(:,1:impactindex), xstart);
-[xstep2] = animation(poly(:,impactindex+1:end), xstep1);
+zstart = 0;
+[xstep1, zstep1] = animation(poly(:,1:impactindex), xstart, zstart);
+[xstep2, zstep2] = animation(poly(:,impactindex+1:end), xstep1, zstep1);
 
 % Plot handheld device's acceleration characterstics
 % phone_characteristics_numerical   % Plots phone's acceleration using numerical differentiation

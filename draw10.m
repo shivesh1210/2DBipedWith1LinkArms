@@ -1,4 +1,4 @@
-function [Yj,Xj]=draw10(qj,x0)
+function [Yj,Xj]=draw10(qj,x0,z0)
 
 global L1 L2 L3 L4 L5 L6 L7 L8 L9 s7 s9 sb s8 s6 st hp lp ld lg spx spy
 
@@ -17,7 +17,7 @@ q10 = qj(9);
 
 % Perpendicular line from ankle to foot sole(Stance foot)
 y1=[0,x0];
-x1=[0,hp];
+x1=[0,z0+hp];
 % Shin of Stance foot
 y2=[y1(2),y1(2)-L1*sin(q1)];
 x2=[x1(2),x1(2)+L1*cos(q1)];
